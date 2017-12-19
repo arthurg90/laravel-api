@@ -1,6 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
+$router->group(["prefix" => "articles"], function ($router) {
+  $router->post("", "Articles@create");
+  $router->get("", "Articles@list");
+  $router->get("{article}", "Articles@read");
+  $router->put("{article}", "Articles@update");
+  $router->delete("{article}", "Articles@delete");
+});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +19,3 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
