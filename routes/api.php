@@ -8,6 +8,7 @@ $router->group(["prefix" => "articles"], function ($router) {
   $router->delete("{article}", "Articles@delete");
 
   $router->post("{article}/comments", "Comments@create");
+  $router->get("{article}/comments", "Comments@list");
 });
 
 
