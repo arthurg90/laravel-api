@@ -6,6 +6,8 @@ $router->group(["prefix" => "articles"], function ($router) {
   $router->get("{article}", "Articles@read");
   $router->put("{article}", "Articles@update");
   $router->delete("{article}", "Articles@delete");
+
+  $router->post("{article}/comments", "Comments@create");
 });
 
 

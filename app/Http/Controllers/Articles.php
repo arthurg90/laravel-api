@@ -1,12 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 use App\Article;
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 
 class Articles extends Controller
 
 {
-  public function create(Request $request) {
+  public function create(ArticleRequest $request) {
     $data = $request->only(["title", "article"]);
     $article = Article::create($data);
     return response($article, 201);
@@ -16,33 +17,16 @@ class Articles extends Controller
     return Article::all();
   }
 
-  // public function read($id) {
-  //   return Article::find($id);
-  // }
-
-
   public function read(Article $article) {
       return $article;
   }
 
-  // public function update(Request $request, $id) {
-  //   $article = Article::find($id);
-  //   $data = $request->only(["title", "article"]);
-  //   $article->fill($data)->save();
-  //   return $article;
-  // }
-
-  public function update(Request $request, Article $article) {
+  public function update(ArticleRequest $request, Article $article) {
       $data = $request->only(["title", "description"]);
       $article->fill($data)->save();
       return $article;
   }
 
-  // public function delete($id) {
-  //   $article = Article::find($id);
-  //   $article->delete();
-  //   return response(null, 204);
-  // }
   public function delete(Article $article) {
       $article->delete();
       return response(null, 204);
